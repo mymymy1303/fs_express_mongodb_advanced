@@ -15,8 +15,8 @@ var app = express();
 // Call DB //////////////////////
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
-var __data = 'mongodb://127.0.0.1/demodb';
-mongoose.connect(__data);
+var __data = 'mongodb://localhost:27017/thay_nguyen';
+mongoose.connect(__data, {useNewUrlParser: true});
 // Global
 mongoose.Promise = global.Promise;
 //Lấy kết nối mặc định

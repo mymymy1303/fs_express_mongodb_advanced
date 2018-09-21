@@ -7,7 +7,8 @@ var userSchema = new Schema({
 	email: String,
 	hash: String
 }, {
-	timestamps: true
+	timestamps: true,
+	collection: 'users'
 })
 
 var User = mongoose.model('User', userSchema)
