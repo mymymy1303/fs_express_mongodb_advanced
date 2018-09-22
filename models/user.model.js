@@ -1,7 +1,6 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+import mongoose from 'mongoose'
 
-var userSchema = new Schema({
+const userSchema = mongoose.Schema({
 	key: String,
 	username: String,
 	email: String,
@@ -11,6 +10,10 @@ var userSchema = new Schema({
 	collection: 'users'
 })
 
-var User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema)
 
-module.exports = User
+User.getAll = () => {
+	return User.find({})
+}
+
+export default User

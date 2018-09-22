@@ -4,12 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var sassMiddleware = require('node-sass-middleware');
 // Gọi Route
-var indexRouter = require('./routes/index');
-var aboutRouter = require('./routes/about');
-var usersRouter = require('./routes/users');
-var usersDetailRouter = require('./routes/usersdetails');
-var formRouter = require('./routes/form');
-var formSave = require('./routes/save');
+
+import indexRouter from './routes/index.route'
+import aboutRouter from './routes/about.route'
+import userRouter from './routes/users.route'
+import usersDetailsRouter from './routes/usersdetails.route'
+import formRouter from './routes/form.route'
+import formSave from './routes/save.route'
+
 // Khởi tạo APP
 var app = express();
 // Call DB //////////////////////
@@ -38,12 +40,14 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 // Init App
-app.use('/', indexRouter);
-app.use('/about', aboutRouter);
-app.use('/users', usersRouter);
-app.use('/user', usersDetailRouter);
-app.use('/form', formRouter);
-app.use('/save', formSave);
+app.use('/', indexRouter)
+app.use('/about', aboutRouter)
+app.use('/users', userRouter)
+app.use('/user', usersDetailsRouter)
+app.use('/form', formRouter)
+app.use('/save', formSave)
+
+
 app.get('/logout', function (req, res, next) {
 	req.logout()
 	res.redirect("/")

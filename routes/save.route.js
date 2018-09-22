@@ -1,10 +1,10 @@
-var express = require('express');
-var bcrypt = require("bcrypt")
-var crypto = require("crypto")
-var router = express.Router();
-var User = require("../models/user.model")
+import express from 'express'
+import bcrypt from 'bcrypt'
+import crypto from 'crypto'
+import User from '../models/user.model'
+const router = express.Router();
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
 	let {
 		Username,
 		EmailAddress
@@ -12,14 +12,15 @@ router.post('/', function (req, res, next) {
 	let hashKey = crypto.randomBytes(5).toString('hex') + '-' + crypto.randomBytes(10).toString('hex') + '-' + crypto.randomBytes(5).toString('hex') + '-' + crypto.randomBytes(5).toString('hex');
 	let hashPass = bcrypt.hashSync(EmailAddress, bcrypt.genSaltSync(8), null);
 
-	var myData = new User({
+	let myData = new User({
 		key: hashKey,
 		username: Username,
 		email: EmailAddress,
 		hash: hashPass
 	});
-	myData.save().then(item => {
-		res.redirect("/users")
+	myData.save()
+		.then(item => {
+			res.redirect("/users")
 			// res.send(item); // Chỉ bật lên khi viết APIs
 		})
 		.catch(err => {
@@ -28,4 +29,4 @@ router.post('/', function (req, res, next) {
 		});
 })
 
-module.exports = router;
+export default router;
