@@ -15,3 +15,15 @@ block content
 						a(href="/user/"+data[user].key)=data[user].username
 					td=data[user].createdAt
 					td=data[user].email
+	
+	ul.list-inline
+		li.list-inline-item
+			a.btn.btn-primary(href="/users?page=1") First
+		li.list-inline-item
+			a.btn.btn-primary(href="") Previous
+		li.list-inline-item
+			a.btn.btn-primary(href="") Next
+		li.list-inline-item
+			a.btn.btn-primary(href="") Last
+
+	p= count
